@@ -1,0 +1,21 @@
+# Local, machine-specific material (not published)
+备份/
+历史方案/
+进度.md
+项目说明.md
+desktop-support/使用与验证说明.md
+
+# Install, build and generated output
+node_modules/
+.npm-cache/
+*.log
+*.asar
+*.asar.unpacked/
+*.patched.asar
+*.verification.json
+*.zip
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini

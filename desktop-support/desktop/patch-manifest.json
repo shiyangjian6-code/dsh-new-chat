@@ -1,0 +1,8 @@
+{
+  "desktop_version": "0.2.1-rc.5",
+  "patch_version": "two-plugin-1",
+  "original_entry_sha256": {
+    "lib/main.js": "9712da3c65d5d4262da7e6d41dad30586070c8eb47f078c62165de2bdba572c3",
+    "lib/preload-app.cjs": "f323eb67f7ace407d3b1d858f264f7846e436d9ba3e80c02b0454a6da0aed968"
+  }
+}

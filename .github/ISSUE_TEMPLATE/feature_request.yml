@@ -1,0 +1,40 @@
+name: Feature request
+description: Suggest an idea for New Chat for DSH Desktop.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the problem first, then the solution you would like.
+        Note that the desktop patch must stay version-locked and minimal.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is missing or inconvenient today?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - "@local/dsh-new-chat (panel)"
+        - "@local/dsh-restart (button)"
+        - "desktop-support patch"
+        - "documentation"
+    validations:
+      required: true

@@ -1,0 +1,27 @@
+{
+  "name": "dsh-new-chat",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Unofficial DeepSeek web chat panel for DeepSeek Harness Desktop, with cross-restart login persistence through a version-locked desktop patch.",
+  "license": "MIT",
+  "author": "shiyangjian6-code",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "verify": "node scripts/verify.mjs"
+  },
+  "devDependencies": {
+    "acorn": "^8.15.0",
+    "yaml": "^2.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiyangjian6-code/dsh-new-chat.git"
+  },
+  "homepage": "https://github.com/shiyangjian6-code/dsh-new-chat#readme",
+  "bugs": {
+    "url": "https://github.com/shiyangjian6-code/dsh-new-chat/issues"
+  }
+}

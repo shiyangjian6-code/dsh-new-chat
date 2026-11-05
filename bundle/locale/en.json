@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "New Chat",
+    "description": "Adds a “New Chat” entry to the left sidebar that opens DeepSeek web chat inside Harness. The companion desktop patch preserves login across restarts; the site may expire sessions."
+  }
+}

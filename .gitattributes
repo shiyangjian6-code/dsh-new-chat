@@ -1,0 +1,11 @@
+# Normalize text files for cross-platform checkouts; keep binaries untouched.
+* text=auto eol=lf
+
+*.asar binary
+*.asar.unpacked/** binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary

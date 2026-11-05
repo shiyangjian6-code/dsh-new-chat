@@ -1,0 +1,5 @@
+# 「新聊天」bundle：在左侧侧边栏注册一个全局面板入口。
+# 面板本体在 client.js 中通过 sidebar.panellist + main 槽位注册。
+- insert:
+    - id: new-chat
+      name: '@local/dsh-new-chat'

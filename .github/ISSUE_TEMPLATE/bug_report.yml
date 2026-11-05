@@ -1,0 +1,66 @@
+name: Bug report
+description: Report a reproducible problem with New Chat for DSH Desktop.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+
+        **Do not** attach `app.asar`, Electron user-data directories, cookies, session data,
+        or screenshots that show account information. Those are personal data.
+  - type: input
+    id: dsh-version
+    attributes:
+      label: DSH Desktop version
+      description: Version shown in the app, e.g. 0.2.1-rc.5.
+      placeholder: "0.2.1-rc.5"
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: The bundle(s) you use, e.g. @local/dsh-new-chat 1.1.0.
+      placeholder: "@local/dsh-new-chat 1.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: patch
+    attributes:
+      label: Is the desktop patch applied?
+      options:
+        - "Yes (desktop-support two-plugin-1)"
+        - "No"
+        - "Not sure"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open New Chat
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or screenshots
+      description: Remove personal information first. The patch `*.verification.json` is fine.
+    validations:
+      required: false
