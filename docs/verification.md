@@ -11,6 +11,15 @@
 | 桌面补丁 | `two-plugin-1`（目标版本 `0.2.1-rc.5`） |
 
 原始明细见 [`desktop-support/verification-result.json`](../desktop-support/verification-result.json)。
+该文件同时记录了**原版**与**补丁后**两个被替换文件的 SHA256，可直接与仓库源码核对：
+
+| 文件 | 原版 SHA256 | 补丁后 SHA256 |
+|---|---|---|
+| `lib/main.js` | `9712da3c65d5d4262da7e6d41dad30586070c8eb47f078c62165de2bdba572c3` | `d9e032e2fa5738d42a3b1986b801cf7061aaa32c551bb156f59d05edfcb0f3c3` |
+| `lib/preload-app.cjs` | `f323eb67f7ace407d3b1d858f264f7846e436d9ba3e80c02b0454a6da0aed968` | `034df9ae4fd9fe1c798bfe2c1eeeb358345691c08017a939ed405691ce2e8f78` |
+
+`npm run verify` 会核对上表与仓库中 `desktop-support/desktop/*` 的实际内容是否一致。
+每次构建补丁还会生成 `*.verification.json`，记录**具体档案**的源/输出哈希与无关条目数。
 
 ## 桌面补丁与归档完整性
 

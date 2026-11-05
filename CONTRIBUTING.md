@@ -28,7 +28,7 @@ python -m py_compile desktop-support/tools/patch_asar.py
 
 - every `package.json`, locale JSON and `patch-manifest.json` parses;
 - every plugin `cordis.patch.yml` parses and matches its package name;
-- `node --check` passes for all JavaScript halves;
+- every JavaScript file parses (Acorn-based syntax check in `scripts/verify.mjs`);
 - `files`/`exports` entries exist, icons are valid and small enough;
 - the desktop patch sources still contain the expected features and markers;
 - repository-relative Markdown links resolve;

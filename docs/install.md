@@ -109,6 +109,7 @@ Test-Path "$env:APPDATA\DSH Desktop\Partitions\dsh-new-chat-v2"
 
 该目录存在即表示持久分区已写入本机。不要导出或分享其中的内容。
 
+<a id="uninstall--rollback"></a>
 ## 卸载与回滚
 
 ### 卸载插件

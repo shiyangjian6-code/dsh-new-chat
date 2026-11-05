@@ -27,6 +27,12 @@ Host。属于可选的配套插件；它依赖 [桌面支持补丁](../desktop-s
 `plugin_manager remove_bundle target = @local/dsh-restart`。
 卸载不影响 `@local/dsh-new-chat`。
 
+## 已知限制
+
+- 按钮固定在 `left: 180px; top: 6px`（Windows 标题栏菜单之后）。左侧栏折叠、窗口极窄或
+  Windows 标题栏布局变化时，可能与内置控件在视觉上靠近；这是当前实现的位置假设。
+- 按钮文案当前为中文（与主聊天插件一致）；`locale/en.json` 只提供插件管理器中的英文名称与描述。
+
 ## 实现说明
 
 - 使用文档化的 `shell.overlay` 列表槽位（`position: fixed; left: 180px; top: 6px`），

@@ -8,6 +8,9 @@ desktop-support/使用与验证说明.md
 # Install, build and generated output
 node_modules/
 .npm-cache/
+__pycache__/
+*.pyc
+*.pyo
 *.log
 *.asar
 *.asar.unpacked/

@@ -1,6 +1,16 @@
 {
   "date": "2026-11-03",
-  "reviewed_commit": "8994f7a",
+  "record_kind": "pre-publication verification snapshot (private working copy; content hashes below)",
+  "desktop_version": "0.2.1-rc.5",
+  "patch_version": "two-plugin-1",
+  "source_entry_sha256": {
+    "lib/main.js": "9712da3c65d5d4262da7e6d41dad30586070c8eb47f078c62165de2bdba572c3",
+    "lib/preload-app.cjs": "f323eb67f7ace407d3b1d858f264f7846e436d9ba3e80c02b0454a6da0aed968"
+  },
+  "patched_entry_sha256": {
+    "lib/main.js": "d9e032e2fa5738d42a3b1986b801cf7061aaa32c551bb156f59d05edfcb0f3c3",
+    "lib/preload-app.cjs": "034df9ae4fd9fe1c798bfe2c1eeeb358345691c08017a939ed405691ce2e8f78"
+  },
   "behavior_scenarios_passed": 14,
   "archive_unchanged_entries": 16649,
   "app_pid_before_button": 36416,

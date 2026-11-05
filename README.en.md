@@ -14,6 +14,9 @@ opens [chat.deepseek.com](https://chat.deepseek.com/) across the whole main cont
 A companion desktop patch keeps your **login across app restarts**, plus an optional
 top-left **Restart** button plugin.
 
+<p align="center"><img src="docs/assets/ui-overview.svg" alt="New Chat panel schematic (not a screenshot)" width="820"></p>
+<p align="center"><sub>Schematic illustration (not a screenshot) · <a href="docs/assets/README.md">privacy-safe screenshots welcome</a></sub></p>
+
 > [!WARNING]
 > **Unofficial community project**, not affiliated with DeepSeek. The desktop patch
 > modifies two files inside `resources/app.asar` of the locally installed DSH Desktop
@@ -66,7 +69,7 @@ flowchart LR
 | [`bundle/`](bundle/README.md) | Plugin `@local/dsh-new-chat` 1.1.0: sidebar entry + full-width WebView panel |
 | [`restart-bundle/`](restart-bundle/README.md) | Optional plugin `@local/dsh-restart` 1.0.0: top-left Restart |
 | [`desktop-support/`](desktop-support/README.md) | Desktop patch sources, version manifest and build/deploy tooling |
-| [`docs/`](docs/install.md) | Install, architecture, troubleshooting, verification |
+| [`docs/`](docs/install.md) | Install, architecture, troubleshooting, verification, publishing |
 | [`scripts/`](scripts/verify.mjs) | Repository checks used by CI |
 
 ## Requirements
@@ -121,8 +124,9 @@ the backed-up `app.asar` while the app is closed, keeping `app.asar.unpacked`. O
 - The risk-control notice reads only the guest page title and the first 4000 characters of its
   text, **in memory**, to pick a message; nothing is stored or sent, and no input values are read.
 - No paid APIs, no telemetry.
-- The desktop patch is an **unofficial local modification**; use at your own risk, verify hashes
-  and `desktop-support/verification-result.json`, and only build from this repository's sources.
+- The desktop patch is an **unofficial local modification**; use at your own risk, verify the
+  patched-file SHA256 values recorded in `desktop-support/verification-result.json` (and the
+  generated `*.verification.json` archive evidence), and only build from this repository's sources.
 
 Report vulnerabilities per [SECURITY.md](SECURITY.md).
 

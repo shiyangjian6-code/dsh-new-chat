@@ -15,8 +15,9 @@ Test-Path "$env:APPDATA\DSH Desktop\Partitions\dsh-new-chat-v2"  # 持久分区�
 - 插件未安装或未启用：设置 → 插件 中确认「新聊天」处于启用状态。
 - 本地目录安装是**链接**：确认 `<仓库路径>\bundle` 仍存在，仓库目录没有被移动/删除。
   若已移动，先卸载再重新安装。
-- `bundle/package.json` 中 `dsh.client` 的 `inject` 指向 `dsh-client-ui-layout/sidebar`；
-  若桌面版本缺少这些包，入口不会注册。本方案只支持 `0.2.1-rc.5`。
+- `bundle/package.json` 的 `dsh.client.inject` 依赖 `@deepseek-ai/dsh-client-ui-layout` 与
+  `@deepseek-ai/dsh-client-ui-sidebar` 两个包；若桌面版本缺少它们，入口不会注册。
+  本方案只支持 `0.2.1-rc.5`。
 - 改完插件后未生效：停用再启用插件，或重启 Harness。
 
 ## 面板显示「当前环境无法在 Harness 内嵌此网页」

@@ -9,6 +9,7 @@
  * Markdown links and Git-tracked content so CI can catch packaging mistakes.
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { join, resolve, dirname } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { parse as parseJs } from 'acorn'
@@ -44,6 +45,10 @@ function readJson(rel) {
 
 function fileExists(rel) {
   return existsSync(join(ROOT, rel))
+}
+
+function sha256(rel) {
+  return createHash('sha256').update(readFileSync(join(ROOT, rel))).digest('hex')
 }
 
 function walk(rel = '', out = []) {
@@ -252,6 +257,27 @@ if (fileExists(resultRel)) {
   check(result.chat_live_smoke?.partition === 'persist:dsh-new-chat-v2', 'verification: chat partition recorded')
   check(result.real_wechat_login_performed === false, 'verification: no real login performed by maintainer')
   check(result.messages_sent === 0, 'verification: no messages sent by maintainer')
+  check(result.desktop_version === '0.2.1-rc.5', 'verification: desktop version recorded')
+  check(result.patch_version === 'two-plugin-1', 'verification: patch version recorded')
+  const provenance = fileExists(manifestRel) ? readJson(manifestRel) : {}
+  const sourceHashes = result.source_entry_sha256 || {}
+  for (const [file, hash] of Object.entries(sourceHashes)) {
+    check(
+      provenance.original_entry_sha256?.[file] === hash,
+      `verification: ${file} original SHA256 matches manifest`,
+    )
+  }
+  const patchedFiles = {
+    'lib/main.js': desktopMainRel,
+    'lib/preload-app.cjs': preloadRel,
+  }
+  for (const [file, hash] of Object.entries(result.patched_entry_sha256 || {})) {
+    const rel = patchedFiles[file]
+    check(
+      Boolean(rel) && /^[0-9a-f]{64}$/.test(String(hash)) && sha256(rel) === hash,
+      `verification: ${file} patched SHA256 matches the repository file`,
+    )
+  }
 } else {
   fail('verification: desktop-support/verification-result.json is missing')
 }
@@ -292,6 +318,14 @@ check(fileExists('CHANGELOG.md'), 'repository: CHANGELOG.md exists')
 check(fileExists('CONTRIBUTING.md'), 'repository: CONTRIBUTING.md exists')
 check(fileExists('SECURITY.md'), 'repository: SECURITY.md exists')
 check(fileExists('THIRD_PARTY_NOTICES.md'), 'repository: third-party notices exist')
+check(fileExists('docs/releasing.md'), 'repository: publishing checklist exists')
+check(fileExists('docs/assets/ui-overview.svg'), 'repository: UI overview illustration exists')
+check(fileExists('docs/assets/README.md'), 'repository: asset/screenshot guidance exists')
+if (fileExists('docs/assets/ui-overview.svg')) {
+  const ui = readText('docs/assets/ui-overview.svg')
+  check(ui.trimStart().startsWith('<svg'), 'repository: UI overview is an SVG illustration')
+  check(Buffer.byteLength(ui) <= MAX_ICON_BYTES * 4, 'repository: UI overview is a reasonable size')
+}
 check(fileExists('.gitignore'), 'repository: .gitignore exists')
 check(fileExists('package-lock.json'), 'repository: package-lock.json exists (npm ci needs it)')
 
@@ -308,7 +342,7 @@ if (fileExists('package.json')) {
 
 if (fileExists('.gitignore')) {
   const ignore = readText('.gitignore')
-  for (const entry of ['备份/', '历史方案/', 'node_modules/', '*.asar', '*.zip']) {
+  for (const entry of ['备份/', '历史方案/', 'node_modules/', '*.asar', '*.zip', '__pycache__/']) {
     check(ignore.includes(entry), `repository: .gitignore covers ${entry}`)
   }
 }
@@ -319,6 +353,10 @@ if (fileExists('README.md')) {
     'repository: README.md references the GitHub repository',
   )
   check(!readText('README.md').includes('YOUR_GITHUB_USER'), 'repository: no placeholder owner left in README')
+  check(
+    readText('README.md').includes('docs/assets/ui-overview.svg'),
+    'repository: README.md shows the UI overview illustration',
+  )
 }
 
 if (fileExists('CHANGELOG.md')) {

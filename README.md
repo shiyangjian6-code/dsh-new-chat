@@ -13,6 +13,9 @@
 [DeepSeek 网页版](https://chat.deepseek.com/)。配套桌面补丁让登录状态**跨应用重启保留**，
 并附带一个可选的「重启」按钮插件。
 
+<p align="center"><img src="docs/assets/ui-overview.svg" alt="新聊天面板示意图（非实际截图）" width="820"></p>
+<p align="center"><sub>界面示意图（非实际截图）· <a href="docs/assets/README.md">欢迎贡献脱敏截图</a></sub></p>
+
 > [!WARNING]
 > **非官方社区项目**，与 DeepSeek 官方无隶属关系。桌面补丁会修改本机
 > `D:\dsh\resources\app.asar` 内的两个文件，属于按版本锁定的本地修改：应用升级会覆盖它，
@@ -60,8 +63,8 @@ flowchart LR
 | [`bundle/`](bundle/README.md) | 插件 `@local/dsh-new-chat` 1.1.0：左侧栏入口 + 全宽 WebView 面板 |
 | [`restart-bundle/`](restart-bundle/README.md) | 可选插件 `@local/dsh-restart` 1.0.0：左上角「重启」 |
 | [`desktop-support/`](desktop-support/README.md) | 桌面补丁源码、版本清单、构建/部署工具 |
-| [`docs/`](docs/install.md) | 安装、架构、排障、验证记录 |
-| [`scripts/`](scripts/verify.mjs) | 零依赖之外的仓库校验脚本（CI 使用） |
+| [`docs/`](docs/install.md) | 安装、架构、排障、验证、发布清单 |
+| [`scripts/`](scripts/verify.mjs) | 仓库校验脚本（CI 使用） |
 
 ## 环境要求
 
@@ -136,7 +139,8 @@ plugin_manager install_bundle target = <仓库绝对路径>/restart-bundle
   不存储、不发送、不读取任何输入框内容。
 - 不调用任何付费 API；不包含遥测或分析代码。
 - 桌面补丁属于**非官方修改**，使用风险自负；请只从本仓库获取补丁源码，并核对
-  `desktop-support/verification-result.json` 与哈希。
+  `desktop-support/verification-result.json` 中记录的补丁文件 SHA256
+  （构建时还会为每次生成的档案写出 `*.verification.json` 哈希证据）。
 
 安全问题的报告方式见 [SECURITY.md](SECURITY.md)。
 
